@@ -35,7 +35,6 @@ ALLOWED_HOSTS = []
 ROOT_URLCONF = 'basic_events.urls'
 WSGI_APPLICATION = 'basic_events.wsgi.application'
 
-
 # Application definition
 
 DJANGO_APPS = [
@@ -72,21 +71,21 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
- # TEMPLATES
- TEMPLATES = [
-     {
-         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-         'DIRS': [TEMPLATES_DIR],
-         'APP_DIRS': True,
-         'OPTIONS': {
-             'context_processors': [
-                 'django.template.context_processors.debug',
-                 'django.template.context_processors.request',
-                 'django.contrib.auth.context_processors.auth',
-                 'django.contrib.messages.context_processors.messages',
-             ],
-         },
-     },
+# TEMPLATES
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [TEMPLATES_DIR],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
 ]
 
 

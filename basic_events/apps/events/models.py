@@ -1,7 +1,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
-from django_extensions.models import TimeStampedModel, TitleSlugDescriptionModel
+from django_extensions.db.models import TimeStampedModel, TitleSlugDescriptionModel
 
 
 
@@ -45,7 +45,7 @@ class Event(TimeStampedModel, TitleSlugDescriptionModel):
         ordering = ['-created_on']
         verbose_name_plural = 'Events'
 
-    def save(self, *args, *kwargs):
+    def save(self, *args, **kwargs):
         if self.start_date > self.end_date:
             self.add_error(self.start_date, 'The start date must come before end date.')
             # @TODO: Ill want to fix tihs

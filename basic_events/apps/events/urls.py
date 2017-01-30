@@ -8,8 +8,8 @@ from .views import (
 )
 
 urlpatterns = [
-    url(r'^$', event_list, name='event_list'),
+    url(r'^$', event_list, name='event-list'),
     url(r'event/(?P<slug>[\w-]+)/$', event, name="event"),
-    url(r'event/create', create, name='event-create')
-    url(r'event/edit/(?P<slug>[\w-]+)/$', edit, name='event-edit),
+    url(r'event/create', create, name='event-create'),
+    url(r'event/edit/(?P<slug>[\w-]+)/$', edit, name='event-edit')
 ]
