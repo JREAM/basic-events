@@ -49,11 +49,14 @@ DJANGO_APPS = [
 
 THIRD_PARTY_APPS = [
     'suit',
+    'crispy_forms',
+    'django_extensions',
     'compressor'
 ]
 
 LOCAL_APPS = [
-    'events'
+    'landings',
+    'events',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS

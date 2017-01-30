@@ -12,3 +12,15 @@ This is just started :)
 pip install -r requirements/development.txt
 ./manage.py runserver
 ```
+
+## Testing
+This runs the Unit Tester Suite
+```
+$ py.test
+```
+
+## Test Coverage
+This triggers `Makefile` which triggers `bin/coverage.sh`
+```
+make test
+```

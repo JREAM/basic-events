@@ -1,0 +1,20 @@
+# Python Bytecode
+*.py[co]
+__pycache__
+.cache/
+
+# DB Files
+sqlite3.db
+db.sqlite3
+
+# Settings
+# For this example I'll leave this here
+# basic_events/settings/local.py
+
+# Coverage
+.coverage
+.coverage_html
+htmlcov/
+
+# Logs
+*.log

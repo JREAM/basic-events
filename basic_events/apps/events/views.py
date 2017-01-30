@@ -2,19 +2,19 @@ from django.shortcuts import render
 from .forms import CreateForm
 
 
-def listing(request):
+def event_list(request):
     """
     """
-    return render(request, 'listing.html', {})
+    return render(request, 'event_list.html', {})
 
 
-def listing_single(request):
+def event(request):
     """
     """
-    return render(request, 'listing_single.html', {})
+    return render(request, 'event.html', {})
 
 
-def listing_create(request):
+def create(request):
     """
     """
 
@@ -24,7 +24,7 @@ def listing_create(request):
     return render(request, 'create.html', {})
 
 
-def listing_edit(request, slug):
+def edit(request, slug):
     """
     """
     return render(request, 'edit.html', {})
