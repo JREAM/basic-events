@@ -47,7 +47,6 @@ DJANGO_APPS = [
 ]
 
 THIRD_PARTY_APPS = [
-    'suit',
     'crispy_forms',
     'django_extensions',
     'compressor'

@@ -4,15 +4,16 @@ from django.db import models
 from django_extensions.db.models import TimeStampedModel, TitleSlugDescriptionModel
 
 
-
 class Ticket(TimeStampedModel, TitleSlugDescriptionModel):
     """
     Every event requires a ticket.
     Every event requires one ticket type to be on sale
     """
     title = models.CharField(max_length=75, unique=True)
-    description = models.TextField(null=False)
-    total = models.PositiveSmallIntegerField()
+
+    sale_starts_on = models.DateTimeField()
+    sale_ends_on = models.DateTimeField()
+
     # Only 9999.99 max in USD for now..
     # For other currencies I'd probably add:
     #   currency: CharField() with a tuple possibly of available currencies set in settings
@@ -20,7 +21,7 @@ class Ticket(TimeStampedModel, TitleSlugDescriptionModel):
     price = models.DecimalField(max_digits=4, decimal_places=2)
 
     class Meta:
-        ordering = ['-created_on']
+        ordering = ['-sale_starts_on']
         verbose_name_plural = 'Tickets'
 
     def __unicode__(self):
@@ -29,20 +30,20 @@ class Ticket(TimeStampedModel, TitleSlugDescriptionModel):
 
 class Event(TimeStampedModel, TitleSlugDescriptionModel):
     """
-    The purpose of is_active is incase it were cancelled.
     """
     title = models.CharField(max_length=125)
+
+    starts_on = models.DateTimeField()
+    ends_on = models.DateTimeField()
+
     description = models.TextField()
-    ticket = models.ManyToManyField(Ticket)
+    tickets = models.ManyToManyField(Ticket)
 
     is_cancelled = models.BooleanField(default=False)
     cancelled_description = models.TextField(null=True)
 
-    start_date = models.DateTimeField()
-    end_date = models.DateTimeField()
-
     class Meta:
-        ordering = ['-created_on']
+        ordering = ['-starts_on']
         verbose_name_plural = 'Events'
 
     def save(self, *args, **kwargs):
@@ -58,3 +59,4 @@ class Event(TimeStampedModel, TitleSlugDescriptionModel):
 # Then users will have their own listings, and signups, and keep count of things.
 #class EventSignup(models.Model):
 #    pass
+#   event.. ticket qty... what ticket...

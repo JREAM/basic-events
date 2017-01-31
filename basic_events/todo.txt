@@ -1,0 +1,14 @@
+# TODO
+
+
+Display a web page to capture basic event information:
+- Event title
+- Event date/time
+- Ticket Types information.
+For each ticket type, the following information should be entered:
+- Ticket title
+- Sale start date/time
+- Sale end date/time
+On submission, proper validation for the provided data should be performed. This includes validating that there are no gaps in ticket types being available for sale (i.e. at least one ticket type must be on sale at any given time from now until the event start time). Communicate submission (and validation) results to the user effectively.
+
+Please use Python/Django, document and pay attention to testing and testability. (Bonus: Include Docker configuration that allows executing the Django application inside a Docker container.) Please take up to one week for this project and feel free to use whatever resources you feel appropriate and make sure to document any assumptions you make. When you're ready, please send us your files or the appropriate GitHub link. We'll look it over and will schedule a call as soon as possible - already looking forward to discussing your ideas and approach.
