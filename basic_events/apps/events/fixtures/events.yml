@@ -1,8 +1,0 @@
-- model: events.event
-  pk: 1
-  fields:
-    title: Google Gathering
-    starts_on: 2017-10-25 10:10:10
-    ends_on: 2017-10-25 10:10:10
-    description: This is a fake description
-    ticket: 1

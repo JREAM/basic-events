@@ -3,5 +3,27 @@
 
 {% block content %}
 <div class="row">
+
+<h1>Event List</h1>
+
+<table class="table table-striped">
+<tr>
+    <th>Title</th>
+    <th>Tickets</th>
+    <th>Starts On</th>
+    <th>Ends On</th>
+    <th>Description</th>
+</tr>
+{% for e in events %}
+    <tr>
+        <td><a href="{% url 'event' slug=e.slug %}">{{ e.title }}</a></td>
+        <td>{{ e.tickets }}</td>
+        <td>{{ e.starts_on }}</td>
+        <td>{{ e.ends_on }}</td>
+        <td>{{ e.description }}</td>
+    </tr>
+{% endfor %}
+</table>
+
 </div>
 {% endblock %}

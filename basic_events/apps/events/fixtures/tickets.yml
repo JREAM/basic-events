@@ -1,8 +1,0 @@
-- model: events.ticket
-  pk: 1
-  fields:
-    title: Front Row
-    description: The best seat in the house
-    sale_starts_on: 2017-10-10 09:10:10
-    sale_ends_on: 2017-10-11 09:10:10
-    price: 29.99

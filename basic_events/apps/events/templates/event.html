@@ -1,7 +1,27 @@
 {% extends 'base.html' %}
-{% block title %}Event{% endblock %}
+{% block title %}Event List{% endblock %}
 
 {% block content %}
 <div class="row">
+
+<h1>{{ events.title }}</h1>
+
+<table class="table table-striped">
+<tr>
+    <th>Title</th>
+    <th>Tickets</th>
+    <th>Starts On</th>
+    <th>Ends On</th>
+    <th>Description</th>
+</tr>
+    <tr>
+        <td>{{ events.title }}</td>
+        <td>{{ events.tickets }}</td>
+        <td>{{ events.starts_on }}</td>
+        <td>{{ events.ends_on }}</td>
+        <td>{{ events.description }}</td>
+    </tr>
+</table>
+
 </div>
 {% endblock %}

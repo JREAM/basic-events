@@ -11,6 +11,9 @@ This is just started :)
 ```
 pip install -r requirements/development.txt
 ./manage.py migrate
+./manage.py seed events --number=40
+
+
 ./manage.py runserver
 or
 ./manage.py runserver_plus

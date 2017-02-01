@@ -8,49 +8,49 @@ from django_extensions.db.models import (
 )
 
 
-class SimpleValidator(models.Model):
-    """
-    This is a validator for the admin, and frontend for the Ticket and
-    Event models. Do NOT add any variables, we don't need or want a migration
-    for this class.
-    """
+# class SimpleValidator():
+#     """
+#     This is a validator for the admin, and frontend for the Ticket and
+#     Event models. Do NOT add any variables, we don't need or want a migration
+#     for this class.
+#     """
 
-    def is_ticket_available(self, event):
-        if len(event.tickets) == 0:
-            # @TODO: Validation error
-            pass
+#     def is_ticket_available(self, event):
+#         if len(event.tickets) == 0:
+#             # @TODO: Validation error
+#             pass
 
-    def check_ticket_gap(self, event):
-        """
-        Ensure there is atleast one ticket on sale for an event
-        """
-        expected_next_date = False
+#     def check_ticket_gap(self, event):
+#         """
+#         Ensure there is atleast one ticket on sale for an event
+#         """
+#         expected_next_date = False
 
-        for t in event.tickets:
-            sale_on = datetime.strptime(t.sale_starts_on, "%m/%d/%y")
+#         for t in event.tickets:
+#             sale_on = datetime.strptime(t.sale_starts_on, "%m/%d/%y")
 
-            """ Check for the next day of sale"""
-            if expected_next_date and sale_on != expected_next_date:
-                # @TODO: Validation error
-                pass
-            expected_next_date = sale_on + timedelta(days=1)
+#             """ Check for the next day of sale"""
+#             if expected_next_date and sale_on != expected_next_date:
+#                 # @TODO: Validation error
+#                 pass
+#             expected_next_date = sale_on + timedelta(days=1)
 
-    def date_misaligned(self, event, ticket_objects):
-        """
-        It's okay for a ticket to sell before event starts_on
-        """
-        for t in ticket_objects:
-            if t.sale_ends_on > event.ends_on:
-                # @TODO: Validation error
-                pass
+#     def date_misaligned(self, event, ticket_objects):
+#         """
+#         It's okay for a ticket to sell before event starts_on
+#         """
+#         for t in ticket_objects:
+#             if t.sale_ends_on > event.ends_on:
+#                 # @TODO: Validation error
+#                 pass
 
-    def clean(self, *args, **kwargs):
-        # @TODO Call some functions here based on the model type
-        super(SimpleValidator, self).clean(*args, **kwargs)
+#     def clean(self, *args, **kwargs):
+#         # @TODO Call some functions here based on the model type
+#         super(SimpleValidator, self).clean(*args, **kwargs)
 
-    def save(self, *args, **kwargs):
-        self.full_clean()
-        super(SimpleValidator, self).save(*args, **kwargs)
+#     def save(self, *args, **kwargs):
+#         self.full_clean()
+#         super(SimpleValidator, self).save(*args, **kwargs)
 
 
 class Ticket(TimeStampedModel, TitleSlugDescriptionModel):
@@ -100,10 +100,9 @@ class Event(TimeStampedModel, TitleSlugDescriptionModel):
     ends_on = models.DateTimeField()
 
     description = models.TextField()
-    tickets = models.ManyToManyField(Ticket)
 
-    is_cancelled = models.BooleanField(default=False)
-    cancelled_description = models.TextField(null=True)
+    # @TODO With NO tickest the event will NOT appear in the view
+    tickets = models.ManyToManyField(Ticket)
 
     class Meta:
         """Simple ordering."""
@@ -111,16 +110,10 @@ class Event(TimeStampedModel, TitleSlugDescriptionModel):
         verbose_name_plural = 'Events'
 
     def save(self, *args, **kwargs):
-        if self.start_date > self.end_date:
-            self.add_error(self.start_date, 'The start date must come before end date.')
+        if self.starts_on > self.ends_on:
+            #self.add_error(self.start_date, 'The start date must come before end date.')
             # @TODO: Ill want to fix tihs
-            raise('ERROR FIX HERE')
+            #raise('ERROR FIX HERE')
+            pass
 
         super(Event, self).save(*args, **kwargs)
-
-
-# @TODO: Probably make a separate user login area so this can be all legit,
-# Then users will have their own listings, and signups, and keep count of things.
-# class EventSignup(models.Model):
-#    pass
-#   event.. ticket qty... what ticket...

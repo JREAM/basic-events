@@ -1,7 +1,26 @@
 {% extends 'base.html' %}
+{% load widget_tweaks %}
+
 {% block title %}Create{% endblock %}
 
 {% block content %}
 <div class="row">
+
+
+<form action="{% url 'event-create' %}" method="post">
+
+{% for f in form %}
+    <div class="form-group">
+        <label>{{ f.label_tag }}</label>
+        {{ f|add_class:"form-control" }}
+    </div>
+{% endfor %}
+
+{% csrf_token %}
+
+<input type="submit" value="Create" class="btn btn-success">
+
+</form>
+
 </div>
 {% endblock %}
