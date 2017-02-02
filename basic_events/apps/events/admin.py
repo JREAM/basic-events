@@ -1,28 +1,47 @@
 from django.contrib import admin
 
+from .forms import EventForm, TicketForm
 from .models import Event, Ticket
 
 
 class EventAdmin(admin.ModelAdmin):
-    fields = (
+    form = EventForm
+    search_fields = [
         'title',
         'starts_on',
         'ends_on',
-        'description',
-        'tickets',
-        'is_cancelled',
-        'cancelled_description'
-    )
+        'tickets'
+    ]
+
+    list_display = [
+        'title',
+        'total_assigned_tickets',
+        'starts_on',
+    ]
+
+    empty_value_display = '-empty-'
+
+    def total_assigned_tickets(self, obj):
+        return obj.tickets.count()
 
 
 class TicketAdmin(admin.ModelAdmin):
-    fields = (
+    form = TicketForm
+    search_fields = [
         'title',
         'sale_starts_on',
         'sale_ends_on',
         'price',
-        'is_assigne',
-    )
+    ]
+
+    list_display = [
+        'title',
+        'sale_starts_on',
+        'sale_ends_on',
+        'price'
+    ]
+
+    empty_value_display = '-empty-'
 
 admin.site.register(Event, EventAdmin)
 admin.site.register(Ticket, TicketAdmin)

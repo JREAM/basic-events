@@ -1,10 +1,7 @@
 """
-Local Settings
-This file is to be renamed 'local.py', this file is in the .gitignore
+Development Settings
 
-For local/development change to:  from .development import *
-For staging change to:            from .staging import *
-For production change:            from .production import *
+Edit local.py for instructions
 """
 from .base import *
 

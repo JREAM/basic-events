@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %}Event List{% endblock %}
+{% block title %}{{ events.title }}{% endblock %}
 
 {% block content %}
 <div class="row">
@@ -13,13 +13,22 @@
     <th>Starts On</th>
     <th>Ends On</th>
     <th>Description</th>
+    <th>Options</th>
 </tr>
     <tr>
         <td>{{ events.title }}</td>
-        <td>{{ events.tickets }}</td>
-        <td>{{ events.starts_on }}</td>
-        <td>{{ events.ends_on }}</td>
+        <td>
+            {% for t in events.tickets.all %}
+                {{ t.title }}
+            {% endfor %}
+        </td>
+        <td><small>{{ events.starts_on|date:"m/d/y h:iA" }}</small></td>
+        <td><small>{{ events.ends_on|date:"m/d/y h:iA" }}</small></td>
         <td>{{ events.description }}</td>
+        <td>
+            <a class="btn btn-sm btn-primary" href="{% url 'event-edit' events.id %}">Edit</a>
+            <a class="btn btn-sm btn-danger" href="{% url 'event-delete' events.id %}">Delete</a>
+        </td>
     </tr>
 </table>
 

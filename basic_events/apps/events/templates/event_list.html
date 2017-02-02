@@ -17,13 +17,42 @@
 {% for e in events %}
     <tr>
         <td><a href="{% url 'event' slug=e.slug %}">{{ e.title }}</a></td>
-        <td>{{ e.tickets }}</td>
-        <td>{{ e.starts_on }}</td>
-        <td>{{ e.ends_on }}</td>
+        <td>{{ e.tickets|length }}</td>
+        <td><small>{{ e.starts_on|date:"m/d/y h:iA" }}</small></td>
+        <td><small>{{ e.ends_on|date:"m/d/y h:iA" }}</small></td>
         <td>{{ e.description }}</td>
     </tr>
 {% endfor %}
 </table>
+
+<div class="text-center">
+<nav aria-label="Page navigation">
+  <ul class="pagination">
+    {% if events.has_previous %}
+    <li>
+      <a href="?page={{ events.previous_page_number }}" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    {% endif %}
+
+    {% for p in events.paginator.page_range %}
+    <li {% if p == events.number %}class="active"{% endif %}>
+        <a href="?page={{ p }}">{{ p }}</a>
+    </li>
+    {% endfor %}
+
+    {% if events.has_next %}
+    <li>
+      <a href="?page={{ events.next_page_number }}" aria-label="Next">
+        <span>&raquo;</span>
+      </a>
+    </li>
+    {% endif %}
+
+  </ul>
+</nav>
+</div>
 
 </div>
 {% endblock %}

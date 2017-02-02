@@ -7,18 +7,18 @@
 <div class="row">
 
 
-<form action="{% url 'event-create' %}" method="post">
+<form action="{% url 'event-create' event.id %}" method="post">
 
-{% for f in form %}
-    <div class="form-group">
-        <label>{{ f.label_tag }}</label>
-        {{ f|add_class:"form-control" }}
-    </div>
-{% endfor %}
+    {% for f in form %}
+        <div class="form-group">
+            <label>{{ f.label_tag }}</label>
+            {{ f|add_class:"form-control" }}
+        </div>
+    {% endfor %}
 
-{% csrf_token %}
+    {% csrf_token %}
 
-<input type="submit" value="Create" class="btn btn-success">
+    <input type="submit" value="Create" class="btn btn-success">
 
 </form>
 

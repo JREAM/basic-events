@@ -7,13 +7,26 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    {% load compress %}
+    <!-- Dont feel like loading compress for develop -->
+    <!-- % load compress % -->
     {% load staticfiles %}
 
-    {% compress css %}
+    <!-- % compress css % -->
     <link rel="stylesheet" href="{% static 'third-party/bootstrap-3.3.6/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'third-party/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css' %}">
     <link rel="stylesheet" href="{% static 'third-party/font-awesome-4.7.0/css/font-awesome.min.css' %}">
-    {% endcompress %}
+    <!-- % endcompress % -->
+
+
+    <!-- % compress js % -->
+    <script src="{% static 'third-party/jquery-2.2.4.min.js' %}"></script>
+    <script src="{% static 'third-party/bootstrap-3.3.6/js/bootstrap.js' %}"></script>
+    <script src="{% static 'third-party/moment/moment.js' %}"></script>
+    <script src="{% static 'third-party/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js' %}"></script>
+    <!-- % endcompress % -->
+
+    <script src="{% static 'js/app.js' %}"></script>
+
     <link rel="stylesheet" href="{% static 'css/screen.css' %}">
   </head>
   <body>
@@ -35,10 +48,5 @@
       {% block content %}{% endblock %}
     </div>
 
-    {% compress js %}
-    <script src="{% static 'third-party/jquery-2.2.4.min.js' %}"></script>
-    <script src="{% static 'third-party/bootstrap-3.3.6/js/bootstrap.js' %}"></script>
-    {% endcompress %}
-    <script src="{% static 'js/app.js' %}"></script>
-  </body>
+</body>
 </html>

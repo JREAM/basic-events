@@ -1,3 +1,10 @@
+/**
+ * Normally I'd use SCSS, and GULP or try WebPack.
+ * but don't have time for it
+ */
+@import url('https://fonts.googleapis.com/css?family=Ubuntu');
+
 body {
-    background: #f7f7f7 url(../img/bg.jpg) no-repeat center top !important;
+    font-family: 'Ubuntu', sans-serif !important;
+    background: #f7f7f7;
 }

@@ -13,5 +13,5 @@ For production change:            from .production import *
 from .development import *
 
 # This obviously isn;t a secret for this demo app :)
-SECRET_KEY =  '3qob_*djdl^q5i-ob21)t5mrq%w3+gck4*r+8zi!+e0-!8$+__'
+SECRET_KEY = '3qob_*djdl^q5i-ob21)t5mrq%w3+gck4*r+8zi!+e0-!8$+__'
 

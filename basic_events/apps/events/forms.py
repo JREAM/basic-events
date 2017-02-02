@@ -1,4 +1,6 @@
 from django.forms import ModelForm
+from django.core import validators
+
 from .models import Event, Ticket
 
 
@@ -12,9 +14,16 @@ class TicketForm(ModelForm):
             'price',
         ]
 
+    def clean_sale_starts_on(self):
+        sale_starts_on = self.cleaned_data['sale_starts_on']
+        sale_ends_on = self.cleaned_data['sale_ends_on']
+        if sale_ends_on > sale_starts_on:
+            ValidationError(_('Starts On must be before the end date '), code='invalid')
+
+
 
 class EventForm(ModelForm):
-     class Meta:
+    class Meta:
         model = Event
         fields = [
             'title',
@@ -23,3 +32,10 @@ class EventForm(ModelForm):
             'description',
             'tickets'
         ]
+
+    def clean_sale_starts_on(self):
+        starts_on = self.cleaned_data['starts_on']
+        ends_on = self.cleaned_data['ends_on']
+        if ends_on > starts_on:
+            ValidationError(_('Starts On must be before the end date '), code='invalid')
+

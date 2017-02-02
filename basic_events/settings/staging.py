@@ -1,5 +1,7 @@
 """
 Staging Settings
+
+Edit local.py for instructions
 """
 from .base import *
 
