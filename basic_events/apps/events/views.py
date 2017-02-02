@@ -77,10 +77,21 @@ def edit(request, id):
     Edits an Event
     """
 
+    try:
+        event = Event.objects.get(pk=id),
+    except event.DoesNotExist:
+        raise Exception('Event Object Does Not Exist pk=%s' % id)
+
+
+    try:
+        form = TicketForm(pk=id)
+    except Exception:
+        raise Exception('Could not load TicketForm pk=%s' % id)
+
     context = {
-        'event': Event.objects.get(pk=id),
+        'event': event,
         # 'ticket': Ticket.objects.get(pk=id),
-        'form': TicketForm(pk=id)
+        'form': form
     }
 
     return render(request, 'edit.html', context)

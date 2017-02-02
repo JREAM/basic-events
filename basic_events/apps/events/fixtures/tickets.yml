@@ -1,0 +1,10 @@
+- model: events.ticket
+  pk: 1
+  fields:
+    title: title
+    sale_starts_on:
+    sale_ends_on:
+    price: 9.99
+
+
+

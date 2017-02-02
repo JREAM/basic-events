@@ -1,0 +1,8 @@
+- model: events.event
+  pk: 1
+  fields:
+    title: title
+    starts_on: x
+    ends_on: x
+    description: x
+    tickets: [1,2]

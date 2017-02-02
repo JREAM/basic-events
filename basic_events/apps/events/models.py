@@ -73,10 +73,6 @@ class Ticket(TimeStampedModel, TitleSlugDescriptionModel):
     #       for all the currencies
     price = models.DecimalField(max_digits=4, decimal_places=2)
 
-    # This is primarily for the admin panel, incase someone creates tickets
-    # and they are never assigned it will be obvious
-    is_assigned = models.IntegerField()
-
     class Meta:
         """Simple ordering."""
 

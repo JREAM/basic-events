@@ -6,13 +6,12 @@ Simple Event App in Django.
 
 This is just started :)
 
+
 # Install
 
 ```
 pip install -r requirements/development.txt
 ./manage.py migrate
-./manage.py seed events --number=40
-
 
 ./manage.py runserver
 or
@@ -32,6 +31,13 @@ docker ps
 ```
 
 ## Testing
+This doesnt make FK relationships or PK's, dont use it.
+
+```
+./manage.py seed events --number=40
+```
+
+
 This runs the Unit Tester Suite
 ```
 $ py.test
