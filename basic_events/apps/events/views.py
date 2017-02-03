@@ -82,7 +82,6 @@ def edit(request, id):
     except event.DoesNotExist:
         raise Exception('Event Object Does Not Exist pk=%s' % id)
 
-
     try:
         form = TicketForm(pk=id)
     except Exception:

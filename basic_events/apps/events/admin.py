@@ -1,11 +1,13 @@
+import copy
+
 from django.contrib import admin
 
 from .forms import EventForm, TicketForm
 from .models import Event, Ticket
 
-
 class EventAdmin(admin.ModelAdmin):
     form = EventForm
+    save_on_top = True
     search_fields = [
         'title',
         'starts_on',
@@ -25,6 +27,8 @@ class EventAdmin(admin.ModelAdmin):
         return obj.tickets.count()
 
 
+
+
 class TicketAdmin(admin.ModelAdmin):
     form = TicketForm
     search_fields = [
@@ -36,6 +40,7 @@ class TicketAdmin(admin.ModelAdmin):
 
     list_display = [
         'title',
+        'description',
         'sale_starts_on',
         'sale_ends_on',
         'price'

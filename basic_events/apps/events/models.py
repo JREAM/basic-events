@@ -53,14 +53,15 @@ from django_extensions.db.models import (
 #         super(SimpleValidator, self).save(*args, **kwargs)
 
 
-class Ticket(TimeStampedModel, TitleSlugDescriptionModel):
+class Ticket(TimeStampedModel):
     """
     Every event requires a ticket.
     Every event requires atleast one ticket type is available,
     meaning there are no gaps in time.
     """
 
-    title = models.CharField(max_length=75, unique=True)
+    title = models.CharField(max_length=75)
+    description = models.CharField(max_length=255)
 
     sale_starts_on = models.DateTimeField()
     sale_ends_on = models.DateTimeField()
@@ -71,12 +72,12 @@ class Ticket(TimeStampedModel, TitleSlugDescriptionModel):
     #       currencies set in settings
     #   price: integer field, would possibly need a validator
     #       for all the currencies
-    price = models.DecimalField(max_digits=4, decimal_places=2)
+    price = models.DecimalField(max_digits=7, decimal_places=2)
 
     class Meta:
         """Simple ordering."""
 
-        ordering = ['-sale_starts_on']
+        ordering = ['title']
         verbose_name_plural = 'Tickets'
 
     def __unicode__(self):
@@ -91,18 +92,18 @@ class Event(TimeStampedModel, TitleSlugDescriptionModel):
     """
 
     title = models.CharField(max_length=125)
+    description = models.TextField()
 
     starts_on = models.DateTimeField()
     ends_on = models.DateTimeField()
 
-    description = models.TextField()
 
     # @TODO With NO tickest the event will NOT appear in the view
     tickets = models.ManyToManyField(Ticket)
 
     class Meta:
         """Simple ordering."""
-        ordering = ['-starts_on']
+        ordering = ['title']
         verbose_name_plural = 'Events'
 
     def save(self, *args, **kwargs):
