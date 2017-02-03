@@ -1,56 +1,10 @@
 from __future__ import unicode_literals
 
-from datetime import datetime, timedelta
 from django.db import models
 from django_extensions.db.models import (
     TimeStampedModel,
     TitleSlugDescriptionModel
 )
-
-
-# class SimpleValidator():
-#     """
-#     This is a validator for the admin, and frontend for the Ticket and
-#     Event models. Do NOT add any variables, we don't need or want a migration
-#     for this class.
-#     """
-
-#     def is_ticket_available(self, event):
-#         if len(event.tickets) == 0:
-#             # @TODO: Validation error
-#             pass
-
-#     def check_ticket_gap(self, event):
-#         """
-#         Ensure there is atleast one ticket on sale for an event
-#         """
-#         expected_next_date = False
-
-#         for t in event.tickets:
-#             sale_on = datetime.strptime(t.sale_starts_on, "%m/%d/%y")
-
-#             """ Check for the next day of sale"""
-#             if expected_next_date and sale_on != expected_next_date:
-#                 # @TODO: Validation error
-#                 pass
-#             expected_next_date = sale_on + timedelta(days=1)
-
-#     def date_misaligned(self, event, ticket_objects):
-#         """
-#         It's okay for a ticket to sell before event starts_on
-#         """
-#         for t in ticket_objects:
-#             if t.sale_ends_on > event.ends_on:
-#                 # @TODO: Validation error
-#                 pass
-
-#     def clean(self, *args, **kwargs):
-#         # @TODO Call some functions here based on the model type
-#         super(SimpleValidator, self).clean(*args, **kwargs)
-
-#     def save(self, *args, **kwargs):
-#         self.full_clean()
-#         super(SimpleValidator, self).save(*args, **kwargs)
 
 
 class Ticket(TimeStampedModel):
@@ -97,8 +51,6 @@ class Event(TimeStampedModel, TitleSlugDescriptionModel):
     starts_on = models.DateTimeField()
     ends_on = models.DateTimeField()
 
-
-    # @TODO With NO tickest the event will NOT appear in the view
     tickets = models.ManyToManyField(Ticket)
 
     class Meta:
@@ -106,11 +58,7 @@ class Event(TimeStampedModel, TitleSlugDescriptionModel):
         ordering = ['title']
         verbose_name_plural = 'Events'
 
-    def save(self, *args, **kwargs):
-        if self.starts_on > self.ends_on:
-            #self.add_error(self.start_date, 'The start date must come before end date.')
-            # @TODO: Ill want to fix tihs
-            #raise('ERROR FIX HERE')
-            pass
-
-        super(Event, self).save(*args, **kwargs)
+#     def is_ticket_available(self, event):
+#         if len(event.tickets) == 0:
+#             # @TODO: Validation error
+#             pass

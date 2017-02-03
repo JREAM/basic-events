@@ -1,9 +1,8 @@
-import copy
-
 from django.contrib import admin
 
 from .forms import EventForm, TicketForm
 from .models import Event, Ticket
+
 
 class EventAdmin(admin.ModelAdmin):
     form = EventForm
@@ -27,8 +26,6 @@ class EventAdmin(admin.ModelAdmin):
         return obj.tickets.count()
 
 
-
-
 class TicketAdmin(admin.ModelAdmin):
     form = TicketForm
     search_fields = [
@@ -47,6 +44,7 @@ class TicketAdmin(admin.ModelAdmin):
     ]
 
     empty_value_display = '-empty-'
+
 
 admin.site.register(Event, EventAdmin)
 admin.site.register(Ticket, TicketAdmin)

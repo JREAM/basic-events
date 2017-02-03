@@ -15,6 +15,7 @@ or regular member perhaps.. I'd probably toss on some decorators
 if I set that up.
 """
 
+
 def event_list(request):
     """
     The list of all events
